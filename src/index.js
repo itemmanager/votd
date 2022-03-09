@@ -4,6 +4,24 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBcjmfvGrA8pV4pQF9rknL42kzGave2V00",
+    authDomain: "votd-live.firebaseapp.com",
+    projectId: "votd-live",
+    storageBucket: "votd-live.appspot.com",
+    messagingSenderId: "861656073745",
+    appId: "1:861656073745:web:f86596ed22b6f467f7d3b0",
+    measurementId: "G-PX7H4F196C"
+};
+
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
@@ -11,7 +29,4 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
