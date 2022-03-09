@@ -24,13 +24,13 @@ function Header() {
 
 function Index() {
     return <nav>
-        <li>
-            <ul><Link to="approach" >Approach</Link></ul>
-            <ul><Link to="acquisition">Acquisition</Link></ul>
-            <ul><Link to="collection">Collection</Link></ul>
-            <ul><Link to="exhibition">Exhibition</Link></ul>
-            <ul><Link to="dominion">Dominion</Link></ul>
-        </li>
+        <ul>
+            <li><Link to="approach" >Approach</Link></li>
+            <li><Link to="acquisition">Acquisition</Link></li>
+            <li><Link to="collection">Collection</Link></li>
+            <li><Link to="exhibition">Exhibition</Link></li>
+            <li><Link to="dominion">Dominion</Link></li>
+        </ul>
     </nav>
 }
 
