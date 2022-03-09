@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import {BrowserRouter, Link, Route} from "react-router-dom";
+import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
+import {Acquisition} from "./Acquisition";
 
 const StyledFooter = styled.footer``
 
@@ -7,7 +8,7 @@ function Footer() {
     return <StyledFooter>
         <nav>
             <ul>
-                <li><a href="https://itemmanager.uk/" target="_blank">Item Manager</a></li>
+                <li><a href="https://itemmanager.uk/" target="_blank" rel="noreferrer">Item Manager</a></li>
             </ul>
         </nav>
     </StyledFooter>
@@ -24,24 +25,35 @@ function Header() {
 function Index() {
     return <nav>
         <li>
-            <ul><Link >Approach</Link></ul>
-            <ul><Link >Acquisition</Link></ul>
-            <ul><Link >Collection</Link></ul>
-            <ul><Link >Exhibition</Link></ul>
-            <ul><Link >Dominion</Link></ul>
+            <ul><Link to="approach" >Approach</Link></ul>
+            <ul><Link to="acquisition">Acquisition</Link></ul>
+            <ul><Link to="collection">Collection</Link></ul>
+            <ul><Link to="exhibition">Exhibition</Link></ul>
+            <ul><Link to="dominion">Dominion</Link></ul>
         </li>
     </nav>
 }
 
+
+function WorkInProgress() {
+    return <h1>🛠 work in progress</h1>
+}
+
+
 function App() {
     return (
-        <div>
+        <BrowserRouter>
+            Hello world
             <Header/>
-                <BrowserRouter>
-                    <Route index element={<Index />} />
-                </BrowserRouter>
+                    <Routes>
+                        <Route path="acquisition" element={<Acquisition />}/>
+                        <Route path=":any" element={<WorkInProgress />} />
+                        <Route index element={<Index />} />
+
+                    </Routes>
+
             <Footer />
-        </div>
+        </BrowserRouter>
     );
 }
 
