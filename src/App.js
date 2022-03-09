@@ -1,25 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import styled from 'styled-components';
+import {BrowserRouter, Link, Route} from "react-router-dom";
+
+const StyledFooter = styled.footer``
+
+function Footer() {
+    return <StyledFooter>
+        <nav>
+            <ul>
+                <li><a href="https://itemmanager.uk/" target="_blank">Item Manager</a></li>
+            </ul>
+        </nav>
+    </StyledFooter>
+}
+
+const StyledHeader = styled.header``
+
+function Header() {
+    return <StyledHeader>
+        <Link to="/">Vow of the Disciple raid aid app</Link>
+    </StyledHeader>
+}
+
+function Index() {
+    return <nav>
+        <li>
+            <ul><Link >Approach</Link></ul>
+            <ul><Link >Acquisition</Link></ul>
+            <ul><Link >Collection</Link></ul>
+            <ul><Link >Exhibition</Link></ul>
+            <ul><Link >Dominion</Link></ul>
+        </li>
+    </nav>
+}
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div>
+            <Header/>
+                <BrowserRouter>
+                    <Route index element={<Index />} />
+                </BrowserRouter>
+            <Footer />
+        </div>
+    );
 }
+
 
 export default App;
