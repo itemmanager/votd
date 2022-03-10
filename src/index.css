@@ -73,8 +73,15 @@ select {
   }
 }
 
+:root {
+  --bg-color: white;
+  --color: black;
+}
+
 body {
   font-family: 'Roboto', sans-serif;
   max-width: 1080px;
   margin: auto;
+  background: var(--bg-color);
+  color: var(--color);
 }

@@ -57,6 +57,9 @@ const images = {
 }
 
 const StyledSymbol = styled.div`
+  border-radius: 10%;
+  overflow: hidden;
+  
   &.selected {
     filter: opacity(50%);
   }

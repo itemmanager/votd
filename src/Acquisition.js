@@ -61,21 +61,28 @@ const defaultTranslations = {
 };
 
 const Buttons = styled.div`
-  display: grid;
+  display: flex;
   gap: 1em;
-  grid-template-columns: repeat(4, 1fr);
-
-  @media screen and (min-width: 720px) {
-    grid-template-columns: repeat(8, 1fr);
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 1em;
+  
+  > * {
+    max-width: 90px;
   }
 `
 
 const StyledSelected = styled.div`
   display: flex;
+  gap: 1em;
+  
+  justify-content: center;
+  > * {
+    max-width: 120px;
+  }
 `
 
 function Selected({symbols, translations, onSelect}) {
-    console.log(Math.max(0, 3 - symbols.length) )
     return <StyledSelected>
         {symbols.map(symbol => <Symbol
             label={translations[symbol]}

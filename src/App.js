@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {Acquisition} from "./Acquisition";
 
 const StyledFooter = styled.footer``
@@ -14,13 +14,13 @@ function Footer() {
     </StyledFooter>
 }
 
-const StyledHeader = styled.header``
+// const StyledHeader = styled.header``
 
-function Header() {
-    return <StyledHeader>
-        <Link to="/">Vow of the Disciple raid aid app</Link>
-    </StyledHeader>
-}
+// function Header() {
+//     return <StyledHeader>
+//         <Link to="/">Vow of the Disciple raid aid app</Link>
+//     </StyledHeader>
+// }
 
 // function Index() {
 //     return <nav>
