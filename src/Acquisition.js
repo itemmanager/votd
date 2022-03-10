@@ -4,36 +4,9 @@ import {useState} from "react";
 import {useNamingSchema} from "./NamingSchema";
 import {Buttons} from "./Buttons";
 import {useParams} from "react-router-dom";
+import {acquisitionSymbols} from "./Symbols";
 
 const StyledAcquisition = styled.div``
-
-const allSymbols = [
-    'ascendantPlane',
-    'blackGarden',
-    "blackHeart",
-    // "commune",
-    // "darkness",
-    // "drink",
-    "earth",
-    // "enter",
-    "fleet",
-    // "give",
-    // "grieve",
-    "guardian",
-    "hive",
-    // "kill",
-    // "knowledge",
-    // "light",
-    "love",
-    // "pyramid",
-    "savathun",
-    "scorn",
-    // "stop",
-    "tower",
-    "witness",
-    "worm",
-    // "worship",
-]
 
 
 
@@ -68,7 +41,7 @@ function toggle(items, item, maxLength = 3) {
     return [...items, item].splice(-maxLength, maxLength)
 }
 
-export function Acquisition({allSymbols}) {
+export function Acquisition({symbols}) {
     const [selected, setSelected] = useState([])
     const {symbol} = useParams();
     const namingSchema = useNamingSchema(symbol);
@@ -86,7 +59,7 @@ export function Acquisition({allSymbols}) {
         />
         {selected.length<3?(
         <Buttons>
-            {allSymbols.map((symbol) => {
+            {symbols.map((symbol) => {
                 return <Symbol
                     label={namingSchema[symbol]}
                     image={symbol}
@@ -103,5 +76,5 @@ export function Acquisition({allSymbols}) {
 }
 
 Acquisition.defaultProps = {
-    allSymbols: allSymbols,
+    symbols: acquisitionSymbols
 }

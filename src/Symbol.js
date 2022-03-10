@@ -70,8 +70,8 @@ const StyledSymbol = styled.div`
   cursor: pointer;
 
   color: white;
-  font-weight: 900;
-  text-shadow: 1px 1px black;
+  font-weight: 400;
+  text-shadow: black 0 0 3px;
   > * {
     grid-area: cell;
   }

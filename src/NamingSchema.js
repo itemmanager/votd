@@ -1,19 +1,19 @@
 const defaultNamingSchema = {
-    ascendantPlane: "ascendant plane",
+    ascendantPlane: "plane",
     blackGarden: "black garden",
-    blackHeart: "black heart",
+    blackHeart: "heart",
     commune: "commune",
-    darkness: "darkness",
+    darkness: "dark",
     drink: "drink",
     earth: "earth",
-    enter: "enter",
+    enter: "drip",
     fleet: "fleet",
     give: "give",
     grieve: "grieve",
     guardian: "guardian",
     hive: "hive",
     kill: "kill",
-    knowledge: "knowledge",
+    knowledge: "brain",
     light: "light",
     love: "love",
     pyramid: "pyramid",
@@ -28,44 +28,43 @@ const defaultNamingSchema = {
 };
 
 
-
-const przemoNamingSchema = {
+const lotryNamingSchema = {
     ascendantPlane: "parasol",
-    blackGarden: "rosja",
+    blackGarden: "garden",
     blackHeart: "plama",
-    commune: "piramida",
-    darkness: "czarny",
-    drink: "napój",
-    earth: "ziamia",
+    commune: "pryzmat",
+    darkness: "ciemność",
+    drink: "kielich",
+    earth: "ziemia",
     enter: "kropla",
-    fleet: "doritos",
-    give: "pazury",
+    fleet: "flota",
+    give: "łapy",
     grieve: "dziura",
     guardian: "strażnik",
     hive: "hive",
-    kill: "przebicie",
+    kill: "kolec",
     knowledge: "mózg",
-    light: "jasna",
-    love: "koniczyna",
+    light: "jasność",
+    love: "kwiat",
     pyramid: "trójkąt",
     savathun: "WQ",
-    scorn: "scorny",
+    scorn: "forsaken",
     stop: "kwadrat",
-    tower: "wieża",
-    traveller: "dzień",
+    tower: "tower",
+    traveller: "wędrowiec",
     witness: "świadek",
-    worm: "eska/s",
-    worship: "stary",
+    worm: "wąż",
+    worship: "ojciec",
 };
 
 const namingSchemas = [
     {name: 'english'},
-    {name: 'przemo'},
+    {name: 'lotry'},
 ]
 
 const existingNamingSchemas = {
     'english': defaultNamingSchema,
-    'przemo': przemoNamingSchema
+    'lotry': lotryNamingSchema
 }
 
 /**
