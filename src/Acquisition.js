@@ -62,8 +62,12 @@ const defaultTranslations = {
 
 const Buttons = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
   gap: 1em;
+  grid-template-columns: repeat(4, 1fr);
+
+  @media screen and (min-width: 720px) {
+    grid-template-columns: repeat(8, 1fr);
+  }
 `
 
 const StyledSelected = styled.div`
