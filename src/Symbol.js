@@ -84,7 +84,7 @@ const StyledSymbol = styled.div`
 export function Symbol({label, image, onSelect, selected}) {
     return <StyledSymbol onClick={() => onSelect?.(image)} className={selected?"selected":""}>
         {label?<span>{label}</span>:""}
-        <img src={images[image]}/>
+        <img src={images[image]} alt={label}/>
     </StyledSymbol>
 }
 

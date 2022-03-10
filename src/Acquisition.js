@@ -60,34 +60,6 @@ const defaultTranslations = {
     worship: "worship",
 };
 
-const defaultNames = [
-    {label: "Ascendant plane", image: 'ascendantPlane'},
-    {label: "Black garden", image: 'blackGarden'},
-    {label: "black heart", image: "blackHeart"},
-    // {label: "commune", image:"commune"},
-    // {label: "darkness", image:"darkness"},
-    // {label: "drink", image:"drink"},
-    {label: "earth", image: "earth"},
-    // {label: "enter", image:"enter"},
-    {label: "fleet", image: "fleet"},
-    // {label: "give", image:"give"},
-    // {label: "grieve", image:"grieve"},
-    {label: "guardian", image: "guardian"},
-    {label: "hive", image: "hive"},
-    // {label: "kill", image:"kill"},
-    // {label: "knowledge", image:"knowledge"},
-    // {label: "light", image:"light"},
-    {label: "love", image: "love"},
-    {label: "pyramid", image: "pyramid"},
-    {label: "savathun", image: "savathun"},
-    {label: "scorn", image: "scorn"},
-    // {label: "stop", image:"stop"},
-    {label: "tower", image: "tower"},
-    {label: "witness", image: "witness"},
-    {label: "worm", image: "worm"},
-    // {label: "worship", image:"worship"},
-]
-
 const Buttons = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
