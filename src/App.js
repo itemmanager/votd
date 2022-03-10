@@ -22,17 +22,17 @@ function Header() {
     </StyledHeader>
 }
 
-function Index() {
-    return <nav>
-        <ul>
-            <li><Link to="approach" >Approach</Link></li>
-            <li><Link to="acquisition">Acquisition</Link></li>
-            <li><Link to="collection">Collection</Link></li>
-            <li><Link to="exhibition">Exhibition</Link></li>
-            <li><Link to="dominion">Dominion</Link></li>
-        </ul>
-    </nav>
-}
+// function Index() {
+//     return <nav>
+//         <ul>
+//             <li><Link to="approach" >Approach</Link></li>
+//             <li><Link to="acquisition">Acquisition</Link></li>
+//             <li><Link to="collection">Collection</Link></li>
+//             <li><Link to="exhibition">Exhibition</Link></li>
+//             <li><Link to="dominion">Dominion</Link></li>
+//         </ul>
+//     </nav>
+// }
 
 
 function WorkInProgress() {
@@ -47,10 +47,8 @@ function App() {
                     <Routes>
                         <Route path="acquisition" element={<Acquisition />}/>
                         <Route path=":any" element={<WorkInProgress />} />
-                        <Route index element={<Index />} />
-
+                        <Route index element={<Acquisition />} />
                     </Routes>
-
             <Footer />
         </BrowserRouter>
     );
