@@ -73,9 +73,13 @@ select {
   }
 }
 
+a {
+  text-decoration: none;
+}
+
 :root {
-  --bg-color: white;
-  --color: black;
+  --bg-color: #071511;
+  --color: #f5f5f5;
 }
 
 body {

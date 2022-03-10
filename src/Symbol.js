@@ -61,26 +61,31 @@ const images = {
 const StyledSymbol = styled.div`
   border-radius: 10%;
   overflow: hidden;
-  
+  box-shadow: rgba(96, 200, 148, 0.5) 0 0 10px;
+
   &.selected {
     filter: opacity(50%);
   }
+
   display: grid;
   grid-template-areas: "cell";
   cursor: pointer;
 
   color: white;
   font-weight: 400;
-  text-shadow: black 0 0 3px;
+  text-shadow: black 1px 1px 2px, black -1px -1px 2px;
+
   > * {
     grid-area: cell;
   }
+
   span {
     text-transform: capitalize;
     z-index: 1;
     padding: .5em;
     align-self: end;
   }
+
   img {
     aspect-ratio: 1;
   }

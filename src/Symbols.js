@@ -1,8 +1,11 @@
 import React from "react";
 import {Link, useParams} from "react-router-dom";
+import styled from "styled-components";
+
 import {Symbol} from "./Symbol";
-import {Buttons} from "./Buttons";
+import {SymbolsContainer} from "./SymbolsContainer";
 import {useNamingSchema} from "./NamingSchema";
+import {StyledButton} from "./StyledButton";
 
 export const acquisitionSymbols = [
     'ascendantPlane',
@@ -40,15 +43,23 @@ export const specialSymbols = [
 //     ...specialSymbols, ...roomSymbols, ...acquisitionSymbols
 // ]
 
+const StyledSymbols = styled.div`
+    > a > button {
+      margin: 1em 0;
+    }
+`;
+
 export function Symbols() {
     const {name} = useParams();
     const namingSchema = useNamingSchema(name);
 
-    return <>
+    return <StyledSymbols>
         <h1>Symbols {name}</h1>
-        <Link to={`/acquisition/${name}`}><button>Use in acquisition</button></Link>
+        <Link to={`/acquisition/${name}`}>
+            <StyledButton>Use in acquisition</StyledButton>
+        </Link>
         <h2>Special</h2>
-        <Buttons>
+        <SymbolsContainer>
             {specialSymbols.map((symbol) => {
                 return <Symbol
                     label={namingSchema[symbol]}
@@ -56,9 +67,9 @@ export function Symbols() {
                     key={symbol}
                 />
             })}
-        </Buttons>
+        </SymbolsContainer>
         <h2>Rooms</h2>
-        <Buttons>
+        <SymbolsContainer>
             {roomSymbols.map((symbol) => {
                 return <Symbol
                     label={namingSchema[symbol]}
@@ -66,9 +77,9 @@ export function Symbols() {
                     key={symbol}
                 />
             })}
-        </Buttons>
+        </SymbolsContainer>
         <h2>Acquisition</h2>
-        <Buttons>
+        <SymbolsContainer>
             {acquisitionSymbols.map((symbol) => {
                 return <Symbol
                     label={namingSchema[symbol]}
@@ -76,6 +87,6 @@ export function Symbols() {
                     key={symbol}
                 />
             })}
-        </Buttons>
-    </>
+        </SymbolsContainer>
+    </StyledSymbols>
 }

@@ -8,25 +8,44 @@ import {Nav} from "./Nav";
 
 const StyledFooter = styled.footer`
     background: black;
+  display: flex;
+  a {
+    font-size: 18px;
+    color: white;
+    padding: 1em;
+  }
 `
 
 function Footer() {
     return <StyledFooter>
-        <Nav>
-            <ul>
-                <li><a href="https://itemmanager.uk/" target="_blank" rel="noreferrer">Item Manager</a></li>
-            </ul>
-        </Nav>
+        <a href="https://itemmanager.uk/" target="_blank" rel="noreferrer">Item Manager</a>
     </StyledFooter>
 }
 
-const StyledHeader = styled.header``
+const StyledHeader = styled.header`
+  ul:first-child {
+    padding: 0;
+  }
+    img {
+      height: 2em;
+    }
+`;
 
 function Header() {
     return <StyledHeader>
         <Nav>
             <ul>
-                <li><Link to="/names">Change names</Link></li>
+                <li>
+                    <Link to="/">
+                        <img src={require("./images/home-logo.png")} alt="votd logo"/>
+                    </Link>
+                </li>
+                <li className="grow" />
+                <li>
+                    <Link to="/names">
+                        Glyph Names
+                    </Link>
+                </li>
             </ul>
         </Nav>
     </StyledHeader>
@@ -36,31 +55,49 @@ function WorkInProgress() {
     return <h1>🛠 work in progress</h1>
 }
 
+const StyledNames = styled.div`
+  ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
+  a {
+    color: #60c894;
+  }
+`;
 
 function Names() {
     const schemas = useAvailableNamingSchemas();
     return <>
-        <h1>Glyph Names</h1>
-        <nav>
-            <ul>
-                {schemas.map(({name}) => (
-                    <li key={name}><Link to={name}>{name}</Link></li>
-                ))}
-            </ul>
-        </nav>
+        <StyledNames>
+            <h1>Glyph Names</h1>
+            <nav>
+                <ul>
+                    {schemas.map(({name}) => (
+                        <li key={name}>
+                            <Link to={name}>
+                                {name.toUpperCase()}
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
+            </nav>
+        </StyledNames>
     </>
 }
 
 const MainBody = styled.section`
     padding: 1em;
-  flex-grow: 1;
+    flex-grow: 1;
 `
 
 const AppContainer = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  
+  box-shadow: rgba(96, 200, 148, 0.8) 0 0 60px;
 `
 
 function App() {
