@@ -22,6 +22,7 @@ import savathun from "./images/savathun.png";
 import scorn from "./images/scorn.png";
 import stop from "./images/stop.png";
 import tower from "./images/tower.png";
+import traveller from "./images/traveller.png"
 import witness from "./images/witness.png";
 import worm from "./images/worm.png";
 import worship from "./images/worship.png";
@@ -53,6 +54,7 @@ const images = {
     witness,
     worm,
     worship,
+    traveller,
     neutral
 }
 

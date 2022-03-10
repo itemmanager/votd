@@ -1,6 +1,9 @@
 import styled from 'styled-components';
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
 import {Acquisition} from "./Acquisition";
+import React, {useState} from 'react';
+import {NamingSchema, useAvailableNamingSchemas, useNamingSchemaName, useNamingSchemaNameSetter} from "./NamingSchema";
+import {Symbols} from "./Symbols";
 
 const StyledFooter = styled.footer``
 
@@ -14,13 +17,19 @@ function Footer() {
     </StyledFooter>
 }
 
-// const StyledHeader = styled.header``
+const StyledHeader = styled.header``
 
-// function Header() {
-//     return <StyledHeader>
-//         <Link to="/">Vow of the Disciple raid aid app</Link>
-//     </StyledHeader>
-// }
+function Header() {
+    const currentNamingSchema = useNamingSchemaName()
+    return <StyledHeader>
+        <nav>
+            <ul>
+                <li><Link to="/">Vow of the Disciple raid aid app</Link></li>
+                <li><Link to="/names">{currentNamingSchema}</Link></li>
+            </ul>
+        </nav>
+     </StyledHeader>
+}
 
 // function Index() {
 //     return <nav>
@@ -40,17 +49,40 @@ function WorkInProgress() {
 }
 
 
+function Names() {
+    const updateNamingSchema = useNamingSchemaNameSetter();
+    const schemas = useAvailableNamingSchemas();
+    return <>
+        <h1>Glyph Names</h1>
+        <nav>
+            <ul>
+                {schemas.map(({name}) => (
+                    <li key={name}><Link to={name} onClick={() => {
+                        updateNamingSchema(name)
+                    }}>{name}</Link></li>
+                ))}
+            </ul>
+        </nav>
+     </>
+}
+
 function App() {
+    const [namingSchema, setNamingSchema] = useState('english')
+
     return (
-        <BrowserRouter>
-            {/*<Header/>*/}
-                    <Routes>
-                        <Route path="acquisition" element={<Acquisition />}/>
-                        <Route path=":any" element={<WorkInProgress />} />
-                        <Route index element={<Acquisition />} />
-                    </Routes>
-            <Footer />
-        </BrowserRouter>
+        <NamingSchema.Provider value={[namingSchema, setNamingSchema]}>
+            <BrowserRouter>
+                <Header/>
+                        <Routes>
+                            <Route path="acquisition" element={<Acquisition />}/>
+                            <Route path="names/:name" element={<Symbols />}/>
+                            <Route path="names" element={<Names />}/>
+                            <Route path=":any" element={<WorkInProgress />} />
+                            <Route index element={<Acquisition />} />
+                        </Routes>
+                <Footer />
+            </BrowserRouter>
+        </NamingSchema.Provider>
     );
 }
 

@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import {Neutral, Symbol} from "./Symbol";
 import {useState} from "react";
+import {useNamingSchema} from "./NamingSchema";
+import {Buttons} from "./Buttons";
 
 const StyledAcquisition = styled.div``
 
@@ -22,7 +24,7 @@ const allSymbols = [
     // "knowledge",
     // "light",
     "love",
-    "pyramid",
+    // "pyramid",
     "savathun",
     "scorn",
     // "stop",
@@ -32,45 +34,7 @@ const allSymbols = [
     // "worship",
 ]
 
-const defaultTranslations = {
-    ascendantPlane: "ascendant plane",
-    blackGarden: "black garden",
-    blackHeart: "black heart",
-    commune: "commune",
-    darkness: "darkness",
-    drink: "drink",
-    earth: "earth",
-    enter: "enter",
-    fleet: "fleet",
-    give: "give",
-    grieve: "grieve",
-    guardian: "guardian",
-    hive: "hive",
-    kill: "kill",
-    knowledge: "knowledge",
-    light: "light",
-    love: "love",
-    pyramid: "pyramid",
-    savathun: "savathun",
-    scorn: "scorn",
-    stop: "stop",
-    tower: "tower",
-    witness: "witness",
-    worm: "worm",
-    worship: "worship",
-};
 
-const Buttons = styled.div`
-  display: flex;
-  gap: 1em;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 1em;
-  
-  > * {
-    max-width: 90px;
-  }
-`
 
 const StyledSelected = styled.div`
   display: flex;
@@ -90,7 +54,7 @@ function Selected({symbols, translations, onSelect}) {
             key={symbol}
             onSelect={onSelect}
         /> )}
-        {Array.from({length: Math.max(0, 3 - symbols.length) }).map(() => <Neutral />)}
+        {Array.from({length: Math.max(0, 3 - symbols.length) }).map((item, index) => <Neutral key={`neutral-${index}`}/>)}
     </StyledSelected>
 }
 
@@ -103,8 +67,9 @@ function toggle(items, item, maxLength = 3) {
     return [...items, item].splice(-maxLength, maxLength)
 }
 
-export function Acquisition({translations, allSymbols}) {
+export function Acquisition({allSymbols}) {
     const [selected, setSelected] = useState([])
+    const namingSchema = useNamingSchema();
 
     function handleSymbolSelect(symbol) {
         setSelected(toggle(selected, symbol))
@@ -114,14 +79,14 @@ export function Acquisition({translations, allSymbols}) {
         <h1>Acquisition</h1>
         <Selected
             symbols={selected}
-            translations={translations}
+            translations={namingSchema}
             onSelect={handleSymbolSelect}
         />
         {selected.length<3?(
         <Buttons>
             {allSymbols.map((symbol) => {
                 return <Symbol
-                    label={translations[symbol]}
+                    label={namingSchema[symbol]}
                     image={symbol}
                     key={symbol}
                     onSelect={handleSymbolSelect}
@@ -136,6 +101,5 @@ export function Acquisition({translations, allSymbols}) {
 }
 
 Acquisition.defaultProps = {
-    translations: defaultTranslations,
     allSymbols: allSymbols,
 }
