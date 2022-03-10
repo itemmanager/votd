@@ -1,48 +1,36 @@
 import styled from 'styled-components';
 import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
 import {Acquisition} from "./Acquisition";
-import React, {useState} from 'react';
-import {NamingSchema, useAvailableNamingSchemas, useNamingSchemaName, useNamingSchemaNameSetter} from "./NamingSchema";
+import React from 'react';
+import {useAvailableNamingSchemas} from "./NamingSchema";
 import {Symbols} from "./Symbols";
+import {Nav} from "./Nav";
 
-const StyledFooter = styled.footer``
+const StyledFooter = styled.footer`
+    background: black;
+`
 
 function Footer() {
     return <StyledFooter>
-        <nav>
+        <Nav>
             <ul>
                 <li><a href="https://itemmanager.uk/" target="_blank" rel="noreferrer">Item Manager</a></li>
             </ul>
-        </nav>
+        </Nav>
     </StyledFooter>
 }
 
 const StyledHeader = styled.header``
 
 function Header() {
-    const currentNamingSchema = useNamingSchemaName()
     return <StyledHeader>
-        <nav>
+        <Nav>
             <ul>
-                <li><Link to="/">Vow of the Disciple raid aid app</Link></li>
-                <li><Link to="/names">{currentNamingSchema}</Link></li>
+                <li><Link to="/names">Change names</Link></li>
             </ul>
-        </nav>
-     </StyledHeader>
+        </Nav>
+    </StyledHeader>
 }
-
-// function Index() {
-//     return <nav>
-//         <ul>
-//             <li><Link to="approach" >Approach</Link></li>
-//             <li><Link to="acquisition">Acquisition</Link></li>
-//             <li><Link to="collection">Collection</Link></li>
-//             <li><Link to="exhibition">Exhibition</Link></li>
-//             <li><Link to="dominion">Dominion</Link></li>
-//         </ul>
-//     </nav>
-// }
-
 
 function WorkInProgress() {
     return <h1>🛠 work in progress</h1>
@@ -50,39 +38,50 @@ function WorkInProgress() {
 
 
 function Names() {
-    const updateNamingSchema = useNamingSchemaNameSetter();
     const schemas = useAvailableNamingSchemas();
     return <>
         <h1>Glyph Names</h1>
         <nav>
             <ul>
                 {schemas.map(({name}) => (
-                    <li key={name}><Link to={name} onClick={() => {
-                        updateNamingSchema(name)
-                    }}>{name}</Link></li>
+                    <li key={name}><Link to={name}>{name}</Link></li>
                 ))}
             </ul>
         </nav>
-     </>
+    </>
 }
 
+const MainBody = styled.section`
+    padding: 1em;
+  flex-grow: 1;
+`
+
+const AppContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  
+`
+
 function App() {
-    const [namingSchema, setNamingSchema] = useState('english')
 
     return (
-        <NamingSchema.Provider value={[namingSchema, setNamingSchema]}>
-            <BrowserRouter>
-                <Header/>
-                        <Routes>
-                            <Route path="acquisition" element={<Acquisition />}/>
-                            <Route path="names/:name" element={<Symbols />}/>
-                            <Route path="names" element={<Names />}/>
-                            <Route path=":any" element={<WorkInProgress />} />
-                            <Route index element={<Acquisition />} />
-                        </Routes>
-                <Footer />
-            </BrowserRouter>
-        </NamingSchema.Provider>
+        <BrowserRouter>
+            <AppContainer>
+            <Header/>
+            <MainBody>
+            <Routes>
+                <Route path="acquisition" element={<Acquisition/>}/>
+                <Route path="acquisition/:symbol" element={<Acquisition/>}/>
+                <Route path="names/:name" element={<Symbols/>}/>
+                <Route path="names" element={<Names/>}/>
+                <Route path=":any" element={<WorkInProgress/>}/>
+                <Route index element={<Acquisition/>}/>
+            </Routes>
+            </MainBody>
+            <Footer/>
+            </AppContainer>
+        </BrowserRouter>
     );
 }
 

@@ -3,6 +3,7 @@ import {Neutral, Symbol} from "./Symbol";
 import {useState} from "react";
 import {useNamingSchema} from "./NamingSchema";
 import {Buttons} from "./Buttons";
+import {useParams} from "react-router-dom";
 
 const StyledAcquisition = styled.div``
 
@@ -69,7 +70,8 @@ function toggle(items, item, maxLength = 3) {
 
 export function Acquisition({allSymbols}) {
     const [selected, setSelected] = useState([])
-    const namingSchema = useNamingSchema();
+    const {symbol} = useParams();
+    const namingSchema = useNamingSchema(symbol);
 
     function handleSymbolSelect(symbol) {
         setSelected(toggle(selected, symbol))

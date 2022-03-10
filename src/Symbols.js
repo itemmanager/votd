@@ -1,5 +1,5 @@
 import React from "react";
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {Symbol} from "./Symbol";
 import {Buttons} from "./Buttons";
 import {useNamingSchema} from "./NamingSchema";
@@ -40,6 +40,7 @@ export function Symbols() {
 
     return <>
         <h1>Symbols {name}</h1>
+        <Link to={`/acquisition/${name}`}><button>Use in acquisition</button></Link>
         <Buttons>
             {allSymbols.map((symbol) => {
                 return <Symbol
