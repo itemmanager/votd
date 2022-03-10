@@ -43,7 +43,7 @@ function WorkInProgress() {
 function App() {
     return (
         <BrowserRouter>
-            <Header/>
+            {/*<Header/>*/}
                     <Routes>
                         <Route path="acquisition" element={<Acquisition />}/>
                         <Route path=":any" element={<WorkInProgress />} />
