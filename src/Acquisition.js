@@ -20,12 +20,15 @@ const StyledAcquisition = styled.div`
 
 
 const StyledSelected = styled.div`
-  display: flex;
+  display: grid;
+  margin-inline: auto;
+  grid-template-columns: repeat(3, 1fr);
   gap: 1em;
-  
+  max-width: calc(360px + 2em);
   justify-content: center;
   > * {
     max-width: 120px;
+    aspect-ratio: 1;
   }
 `;
 
