@@ -39,9 +39,9 @@ export const specialSymbols = [
     "traveller", "pyramid", "light", "darkness",
 ]
 
-// export const allSymbols = [
-//     ...specialSymbols, ...roomSymbols, ...acquisitionSymbols
-// ]
+export const allSymbols = [
+    ...specialSymbols, ...roomSymbols, ...acquisitionSymbols
+]
 
 const StyledSymbols = styled.div`
     > a > button {
@@ -58,29 +58,8 @@ export function Symbols() {
         <Link to={`/acquisition/${name}`}>
             <StyledButton>Use in acquisition</StyledButton>
         </Link>
-        <h2>Special</h2>
         <SymbolsContainer>
-            {specialSymbols.map((symbol) => {
-                return <Symbol
-                    label={namingSchema[symbol]}
-                    image={symbol}
-                    key={symbol}
-                />
-            })}
-        </SymbolsContainer>
-        <h2>Rooms</h2>
-        <SymbolsContainer>
-            {roomSymbols.map((symbol) => {
-                return <Symbol
-                    label={namingSchema[symbol]}
-                    image={symbol}
-                    key={symbol}
-                />
-            })}
-        </SymbolsContainer>
-        <h2>Acquisition</h2>
-        <SymbolsContainer>
-            {acquisitionSymbols.map((symbol) => {
+            {allSymbols.map((symbol) => {
                 return <Symbol
                     label={namingSchema[symbol]}
                     image={symbol}
