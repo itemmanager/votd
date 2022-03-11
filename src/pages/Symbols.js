@@ -47,7 +47,7 @@ export const allSymbols = [
 
 const StyledSymbols = styled.div`
   > a > button {
-    margin: 1em 0;
+    margin: 1em 1em 1em 0;
   }
 `;
 

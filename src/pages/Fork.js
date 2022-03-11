@@ -6,12 +6,18 @@ import {useToastEmitter} from "../components/Toast";
 import {useUserUid} from "../auth";
 import {uuid4} from "../tools";
 import {Loading} from "../components/Loading";
+import {StyledButton} from "../components/StyledButton";
 
-const StyledFork = styled.section``
+const StyledFork = styled.div`
+  span {
+    color: rgb(96, 200, 148);
+  }
+`;
 
 const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
+  margin-top: 2em;
 
   label {
     display: flex;
@@ -19,7 +25,19 @@ const StyledForm = styled.form`
 
     input {
       background: transparent;
-      color: var(--color)
+      color: var(--color);
+      border: 1px solid rgba(96, 200, 148, 0.5);
+      margin: 1em 0;
+      padding: 0.5em;
+    }
+  }
+
+  button {
+    margin: 1em 0;
+
+    @media (min-width: 768px) {
+      margin: 2em auto;
+      padding-inline: 5em;
     }
   }
 `
@@ -64,11 +82,18 @@ export function Fork() {
     }
 
 
-    return <StyledFork>
-        <h1>Fork {namingSchema.name}</h1>
-        <StyledForm onSubmit={handleSubmit}>
-            <label>name<input type="text" ref={nameRef}/></label>
-            <button disabled={!formEnabled}>create</button>
-        </StyledForm>
-    </StyledFork>
+    return (
+        <StyledFork>
+            <h1>Fork <span>{namingSchema.name}</span></h1>
+            <StyledForm onSubmit={handleSubmit}>
+                <label>
+                    Name
+                    <input type="text" ref={nameRef} placeholder="Name your Glyphs"/>
+                </label>
+                <StyledButton disabled={!formEnabled}>
+                    Create
+                </StyledButton>
+            </StyledForm>
+        </StyledFork>
+    )
 }

@@ -1,7 +1,14 @@
-import {StyledButton} from "./StyledButton";
 import React from "react";
 import {useAuth} from "../auth";
+import styled from "styled-components";
+import {StyledButton} from "./StyledButton";
 import {useToastEmitter} from "./Toast";
+
+const StyledLogout = styled.div`
+    button {
+      margin-right: 1em;
+    }
+`;
 
 export function Logout() {
     const toast = useToastEmitter()
@@ -12,5 +19,11 @@ export function Logout() {
             () => toast("You are logged out", "info")
         )
     }
-    return <StyledButton onClick={handleLogout}>Logout</StyledButton>
+    return (
+        <StyledLogout>
+            <StyledButton onClick={handleLogout}>
+                Logout
+            </StyledButton>
+        </StyledLogout>
+    )
 }

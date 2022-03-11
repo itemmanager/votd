@@ -94,6 +94,7 @@ const StyledSymbol = styled.div`
   }
   input:focus {
     background: rgba(0,0,0,.5);
+    border: 1px solid rgb(96, 200, 148);
     outline: 0;
   }
   
@@ -116,12 +117,22 @@ const StyledSymbol = styled.div`
 export function Symbol({label, image, onSelect, selected, onEdit}) {
     const readOnlyLabel = label ? <span>{label}</span> : ""
     const labelComponent = onEdit ?
-        <input type="text" value={label} onChange={event => onEdit(event.target.value)}/> : readOnlyLabel
+        <input
+            type="text"
+            value={label}
+            onChange={event => onEdit(event.target.value)}
+        /> : readOnlyLabel
 
-    return <StyledSymbol onClick={() => onSelect?.(image)} className={selected ? "selected" : ""}>
-        <img src={images[image]} alt={label}/>
-        {labelComponent}
-    </StyledSymbol>
+    return (
+        <StyledSymbol
+            onClick={() => onSelect?.(image)}
+            className={selected ? "selected" : ""}
+        >
+            <img src={images[image]} alt={label}/>
+            {labelComponent}
+        </StyledSymbol>
+    )
+
 }
 
 export function Neutral() {

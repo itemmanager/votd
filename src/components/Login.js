@@ -2,7 +2,13 @@ import {StyledButton} from "./StyledButton";
 import React from "react";
 import {useAuth} from "../auth";
 import {GoogleAuthProvider, signInWithPopup} from "firebase/auth";
+import styled from "styled-components";
 
+const StyledLogin = styled.div`
+    button {
+      margin-right: 1em;
+    }
+`;
 
 export function Login () {
     const auth = useAuth()
@@ -13,5 +19,12 @@ export function Login () {
         signInWithPopup(auth, provider)
     }
 
-    return <StyledButton onClick={handleLogin}>Login</StyledButton>
+    return (
+        <StyledLogin>
+            <StyledButton onClick={handleLogin}>
+                Login
+            </StyledButton>
+        </StyledLogin>
+    )
+
 }

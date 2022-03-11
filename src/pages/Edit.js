@@ -10,7 +10,22 @@ import {allSymbols} from "./Symbols";
 import {SymbolsContainer} from "../components/SymbolsContainer";
 import {useToastEmitter} from "../components/Toast";
 
-const StyledEdit = styled.div``
+const StyledEdit = styled.div`
+  display: flex;
+  flex-direction: column;
+  span {
+    color: rgb(96, 200, 148);
+  }
+  
+  button {
+    margin: 1em 0;
+    
+    @media (min-width: 768px) {
+      margin: 2em auto;
+      padding-inline: 5em;
+    }
+  }
+`;
 
 
 export function Edit() {
@@ -33,8 +48,15 @@ export function Edit() {
     }
 
     if (uid !== namingSchema.owner) {
-        return <StyledEdit><h1>Cannot edit not own schema</h1>
-            <Link to={`/names/${name}`}><StyledButton>Back</StyledButton></Link>
+        return <StyledEdit>
+            <h1>
+                Cannot edit not own schema
+            </h1>
+            <Link to={`/names/${name}`}>
+                <StyledButton>
+                    Back
+                </StyledButton>
+            </Link>
         </StyledEdit>
     }
 
@@ -49,11 +71,12 @@ export function Edit() {
             .finally(() => setIsSaving(false))
     }
 
-    return <StyledEdit>
-        <h1>Edit {namingSchema.name}</h1>
-        <SymbolsContainer>
-            {allSymbols.map((symbol) => {
-                return  <Symbol
+    return (
+        <StyledEdit>
+            <h1>Edit <span>{namingSchema.name}</span></h1>
+            <SymbolsContainer>
+                {allSymbols.map((symbol) => {
+                    return  <Symbol
                         label={inEdit.names[symbol]}
                         image={symbol}
                         key={symbol}
@@ -67,8 +90,9 @@ export function Edit() {
                         }
                         }
                     />
-            })}
-        </SymbolsContainer>
-        <StyledButton onClick={handleSave}>Save</StyledButton>
-    </StyledEdit>
+                })}
+            </SymbolsContainer>
+            <StyledButton onClick={handleSave}>Save</StyledButton>
+        </StyledEdit>
+    )
 }
