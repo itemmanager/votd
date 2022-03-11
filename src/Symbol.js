@@ -62,7 +62,13 @@ const StyledSymbol = styled.div`
   border-radius: 10%;
   overflow: hidden;
   box-shadow: rgba(96, 200, 148, 0.5) 0 0 10px;
-  font-size: clamp(.5rem, 3vw, 1.5rem);
+  
+
+  @media only screen and (min-width: 600px) {
+    & {
+      font-size: clamp(.5rem, 2vw, 1.25rem);    
+    }
+  }
   
   &.selected {
     filter: opacity(50%);
