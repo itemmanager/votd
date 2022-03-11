@@ -4,5 +4,9 @@ service cloud.firestore {
     match /{document=**} {
       allow read, write: if false;
     }
+    match /glyphNames/{document} {
+      allow write: if false;
+      allow read: if request.auth != null;
+    }
   }
 }
