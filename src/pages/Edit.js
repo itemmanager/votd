@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Link, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import {useGlyphNamesStorage, useNamingSchema} from "../namingSchema";
 import {useUserUid} from "../auth";
 import styled from "styled-components"
@@ -16,6 +16,16 @@ const StyledEdit = styled.div`
   span {
     color: rgb(96, 200, 148);
   }
+  h1 > input {
+    color: rgb(96, 200, 148);
+    background: transparent;
+    border: none;
+    
+  }
+
+  h1 > input:focus {
+    outline: 1px solid rgb(96, 200, 148);
+  }
   
   button {
     margin: 1em 0;
@@ -27,7 +37,6 @@ const StyledEdit = styled.div`
   }
 `;
 
-
 export function Edit() {
     const {name} = useParams()
     const [isSaving, setIsSaving] = useState(false);
@@ -36,17 +45,17 @@ export function Edit() {
     const uid = useUserUid();
     const store = useGlyphNamesStorage();
     const toastEmitter = useToastEmitter();
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (!loading) {
             setInEdit(namingSchema)
         }
-    }, [loading, setInEdit])
+    }, [loading, setInEdit, namingSchema])
 
     if (loading || !inEdit  || isSaving) {
         return <Loading/>
     }
-
     if (uid !== namingSchema.owner) {
         return <StyledEdit>
             <h1>
@@ -63,7 +72,7 @@ export function Edit() {
     function handleSave() {
         setIsSaving(true);
         store(inEdit)
-            .then(() => toastEmitter("Saved", "info"))
+            .then(() => {toastEmitter("Saved", "info"); navigate(`/names/${name}/`)})
             .catch((e) => {
                 console.error(e)
                 toastEmitter("Failed save", "error")
@@ -73,7 +82,9 @@ export function Edit() {
 
     return (
         <StyledEdit>
-            <h1>Edit <span>{namingSchema.name}</span></h1>
+            <h1>Edit <input type="text" value={inEdit.name} onChange={
+                event => setInEdit({...inEdit, name: event.target.value})
+            } /></h1>
             <SymbolsContainer>
                 {allSymbols.map((symbol) => {
                     return  <Symbol
@@ -83,7 +94,7 @@ export function Edit() {
                         onEdit={value => {
                             setInEdit({
                                 ...inEdit, names: {
-                                    ...inEdit.name,
+                                    ...inEdit.names,
                                     [symbol]: value
                                 }
                             })

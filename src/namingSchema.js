@@ -1,7 +1,7 @@
 import {collection, doc, setDoc, query, where, getDocs, getDoc} from "firebase/firestore";
 import {useFirestore} from "./firebase";
 import {useIsAuthenticated, useUserUid} from "./auth";
-import {useEffect, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
 import {useToastEmitter} from "./components/Toast";
 
 const englishNames = {
@@ -74,7 +74,8 @@ const namingSchemas = [
 
 export function useGlyphNamesColleciton() {
     const db = useFirestore();
-    return collection(db, "glyphNames")
+    const glyphNames = useMemo(() => collection(db, "glyphNames"), [db])
+    return glyphNames
 }
 
 export function useGlyphNamesStorage() {
@@ -82,7 +83,6 @@ export function useGlyphNamesStorage() {
     const db = useFirestore();
 
     async function setter(obj) {
-        console.log("will store", obj);
         await setDoc(doc(db, "glyphNames", obj.id), {
             ...obj,
             owner: user,
@@ -100,7 +100,7 @@ function useOnlineNamingSchemas() {
     const [names, setNames] = useState([])
 
     useEffect(() => {
-        if(isAuthenticated) {
+        if(isAuthenticated && uid) {
             const q = query(collection, where("owner", "==", uid))
             getDocs(q).then(snapshot => {
                 const collected = [];
@@ -109,8 +109,10 @@ function useOnlineNamingSchemas() {
                 })
                 setNames(collected)
             })
+        } else {
+            setNames([])
         }
-    }, [isAuthenticated, uid])
+    }, [isAuthenticated, uid, collection])
     return names
 }
 
@@ -148,7 +150,7 @@ export function useNamingSchema(id) {
                 toast(`Unknown language: ${id}`, 'error')
             }
         });
-    }, [id, defaultSchema])
+    }, [id, defaultSchema, db, toast])
     if(defaultSchema) {
         return [defaultSchema, false]
     }

@@ -1,12 +1,25 @@
-import {getAuth, onAuthStateChanged, signInAnonymously} from "firebase/auth";
+import {getAuth, onAuthStateChanged, signInAnonymously, connectAuthEmulator} from "firebase/auth";
 import {useEffect, useState} from "react";
 import {useFirabaseApp} from "./firebase";
 
 
-export function useAuth() {
+const initialized = [];
+
+function useDebugAuth() {
+    const auth = useProdAuth()
+    if(initialized.length===0) {
+        connectAuthEmulator(auth, "http://localhost:9099");
+        initialized.push(true)
+    }
+    return auth
+}
+
+function useProdAuth() {
     const app = useFirabaseApp();
     return getAuth(app)
 }
+
+export const useAuth = process.env.NODE_ENV === 'production' ? useProdAuth : useDebugAuth
 
 export function useUserUid() {
     const user = useUser();

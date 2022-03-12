@@ -44,9 +44,5 @@ export function Toasts() {
 
 export function useToastEmitter() {
     const [,addToast] = useContext(ToastContext)
-
-    function emitToast(message, type) {
-        addToast("toast:", message, "type:", type)
-    }
-    return emitToast
+    return addToast
 }

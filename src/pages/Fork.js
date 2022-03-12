@@ -1,9 +1,8 @@
 import styled from "styled-components"
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {useGlyphNamesStorage, useNamingSchema} from "../namingSchema";
 import {useRef, useState} from "react";
 import {useToastEmitter} from "../components/Toast";
-import {useUserUid} from "../auth";
 import {uuid4} from "../tools";
 import {Loading} from "../components/Loading";
 import {StyledButton} from "../components/StyledButton";
@@ -49,6 +48,7 @@ export function Fork() {
     const nameRef = useRef();
     const toastEmitter = useToastEmitter();
     const store = useGlyphNamesStorage();
+    const navigate = useNavigate();
 
     if(loading) {
         return <Loading/>
@@ -66,14 +66,14 @@ export function Fork() {
             return
         }
         setFormEnabled(false);
-
+        const newId = uuid4();
         const newNamingSchema = {
             ...namingSchema,
-            id: uuid4(),
+            id: newId,
             name: newName
         }
         store(newNamingSchema)
-            .then(() => toastEmitter("TODO: Redirect"))
+            .then(() => navigate(`/names/${newId}/edit`))
             .catch((e) => {
                 toastEmitter(`Failed to create new glyph names`, "error")
             })

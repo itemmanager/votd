@@ -5,7 +5,8 @@ service cloud.firestore {
       allow read, write: if false;
     }
     match /glyphNames/{document} {
-      allow write: if false;
+      allow update, delete: if request.auth.uid == resource.data.owner;
+      allow create: if request.auth != null && request.resource.data.owner == request.auth.uid;
       allow read: if request.auth != null;
     }
   }
