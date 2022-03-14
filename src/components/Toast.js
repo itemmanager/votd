@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from "react"
 import styled from "styled-components"
-import {uuid4} from "../tools";
+import {randomId} from "../tools";
 
 const ToastContext = React.createContext();
 
@@ -26,7 +26,7 @@ export function ToastContextProvider({children}) {
     }
 
     function emitToasts(message, type) {
-        const id = uuid4();
+        const id = randomId();
         setToasts([...toasts, {message, type, id, remove}])
     }
 

@@ -14,7 +14,6 @@ export function Login () {
     const auth = useAuth()
     function handleLogin(event) {
         const provider = new GoogleAuthProvider();
-
         event.preventDefault()
         signInWithPopup(auth, provider)
     }

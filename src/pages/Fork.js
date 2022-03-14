@@ -3,7 +3,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import {useGlyphNamesStorage, useNamingSchema} from "../namingSchema";
 import {useRef, useState} from "react";
 import {useToastEmitter} from "../components/Toast";
-import {uuid4} from "../tools";
+import {randomId} from "../tools";
 import {Loading} from "../components/Loading";
 import {StyledButton} from "../components/StyledButton";
 
@@ -66,7 +66,7 @@ export function Fork() {
             return
         }
         setFormEnabled(false);
-        const newId = uuid4();
+        const newId = randomId();
         const newNamingSchema = {
             ...namingSchema,
             id: newId,

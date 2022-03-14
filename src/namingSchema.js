@@ -63,7 +63,7 @@ const lotryNames = {
     worship: "ojciec",
 };
 
-const english = {id: 'english', name: 'Default english names', names: englishNames};
+export const english = {id: 'english', name: 'Default english names', names: englishNames};
 const lotry = {id: 'lotry', name: 'Galaktyczne Łotry', names: lotryNames};
 
 const namingSchemas = [
@@ -72,10 +72,9 @@ const namingSchemas = [
 ]
 
 
-export function useGlyphNamesColleciton() {
+function useGlyphNamesColleciton() {
     const db = useFirestore();
-    const glyphNames = useMemo(() => collection(db, "glyphNames"), [db])
-    return glyphNames
+    return useMemo(() => collection(db, "glyphNames"), [db])
 }
 
 export function useGlyphNamesStorage() {
@@ -93,7 +92,7 @@ export function useGlyphNamesStorage() {
 
 }
 
-function useOnlineNamingSchemas() {
+export function useOnlineNamingSchemas() {
     const isAuthenticated = useIsAuthenticated();
     const uid = useUserUid();
     const collection = useGlyphNamesColleciton();
