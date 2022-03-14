@@ -1,12 +1,12 @@
 /**
  * @jest-environment ./tests/firebase.environment.js
  */
-import {english, useOnlineNamingSchemas} from "./namingSchema";
+import {english, useOnlineNamingSchemas} from "../namingSchema";
 import {doc, setDoc, deleteDoc} from "firebase/firestore";
-import {useAuth} from "./auth";
-import {useFirestore} from "./firebase";
-import {ensureTestUser} from "./testHelpers";
-import {randomId} from "./tools";
+import {useAuth} from "../auth";
+import {useFirestore} from "../firebase";
+import {ensureTestUser} from "../testHelpers";
+import {randomId} from "../tools";
 import {render, screen} from "@testing-library/react";
 
 // eslint-disable-next-line react-hooks/rules-of-hooks

@@ -1,8 +1,8 @@
 import {render, screen, act} from '@testing-library/react';
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
-import {useAuth, useIsAuthenticated, useUser, useUserUid} from "./auth";
-import {ensureTestUser, testUserEmail, testUserPassword} from "./testHelpers";
+import {useAuth, useIsAuthenticated, useUser, useUserUid} from "../auth";
+import {ensureTestUser, testUserEmail, testUserPassword} from "../testHelpers";
 
 // eslint-disable-next-line react-hooks/rules-of-hooks
 const auth = useAuth();

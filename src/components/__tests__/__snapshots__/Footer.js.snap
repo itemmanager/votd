@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer snapshot 1`] = `
+.c0 {
+  background: black;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c0 a {
+  font-size: 18px;
+  color: white;
+  padding: 1em;
+}
+
+<footer
+  className="c0"
+>
+  <a
+    href="https://itemmanager.uk/"
+    rel="noreferrer"
+    target="_blank"
+  >
+    Item Manager
+  </a>
+</footer>
+`;

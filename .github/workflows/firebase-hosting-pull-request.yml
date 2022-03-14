@@ -4,14 +4,19 @@
 name: Deploy to Firebase Hosting on PR
 'on': pull_request
 jobs:
-  build_and_preview:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - run: npm install -g firebase-tools
       - run: yarn install --frozen-lockfile
       - name: test
-        run: firebase emulators:exec "yarn test --forceExit --coverage"
+        run: firebase emulators:exec "yarn test --forceExit --coverage --outputFile=result.json --testLocationInResults"
+  build_and_preview:
+    needs:
+      test
+    runs-on: ubuntu-latest
+    steps:
       - run: yarn build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:

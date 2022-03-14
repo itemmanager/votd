@@ -1,4 +1,4 @@
-import {useAnalytics, useFirestore} from "./firebase";
+import {useAnalytics, useFirestore} from "../firebase";
 
 test("useAnalytics will return analytics", () => {
     const analytics = useAnalytics()
