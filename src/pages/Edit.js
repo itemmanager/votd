@@ -72,7 +72,7 @@ export function Edit() {
     function handleSave() {
         setIsSaving(true);
         store(inEdit)
-            .then(() => {toastEmitter("Saved", "info"); navigate(`/names/${name}/`)})
+            .then(() => {toastEmitter("Saved", "success"); navigate(`/names/${name}/`)})
             .catch((e) => {
                 console.error(e)
                 toastEmitter("Failed save", "error")

@@ -89,7 +89,6 @@ export function Acquisition({symbols}) {
                 </SymbolsContainer>
             ) :
             <StyledButton onClick={() => setSelected([])}>Reset</StyledButton>}
-
     </StyledAcquisition>
 }
 
